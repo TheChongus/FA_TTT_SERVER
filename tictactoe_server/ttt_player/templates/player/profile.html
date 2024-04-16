@@ -1,0 +1,89 @@
+<!--inherits the template from /templates/base.html-->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Tic Tac Toe - Player Profile
+{% endblock %}
+
+{% block content %}
+<!-- profile.html -->
+
+<div class='container', id='page_header'>
+    <h1>{{ user.username }}'s Profile</h1>
+</div>
+
+
+<div class='container' id='profile_main'>
+
+    <div id = 'games_list'>
+        <h2>Current Teams:</h2>
+        
+            <p>
+                <ul>
+                    {% for team in teams %}
+                        <li><h5>{{ team.name }}</h5>
+                            <p>
+                            Games:
+                                <ul>
+                                    {% for game in team.games.all %}
+                                        <li>
+                                            
+                                            <a href="{% url 'game_detail' game_id=game.game_id team_id=team.id %}">{{ game.game_id}} - {{ game.status }}</a>
+                                        
+                                        </li>
+                                    {% empty %}
+                                        <li>No games</li>
+                                    {% endfor %}
+                                </ul>
+                            </p>
+                        </li>
+                    {% empty %}
+            <li>You have not created any teams</li>
+            {% endfor %}
+        </ul>
+        </p>
+        </div>
+
+        <div id='create_team_form'>
+        <h4>Create a new game:</h4>
+        
+        {% block messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" style="color: red !important; width: 300px;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endblock messages %}
+        <form method="post" action="{% url 'create_team' %}">
+            {% csrf_token %}
+            <input type="text" name="team_name" required>
+            <button type="submit">Create Team</button>
+        </form>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+<!---
+<h2>Completed Games</h2>
+<ul>
+    {% for game in completed_games %}
+    <li>{{ game.name }}</li>
+    {% endfor %}
+</ul>
+
+<h2>Games in Progress</h2>
+<ul>
+    {% for game in in_progress_games %}
+    <li>{{ game.name }}</li>
+    {% endfor %}
+</ul>
+--->
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+<!--Include the game id in the title-->
+<title>Game {{ game.game_id }}</title>
+{% endblock %}
+
+
+
+{% block content %}
+    <h1 style='text-align: center;'>Game {{ game.game_id }}</h1>
+    <div class="container" style="display: flex; justify-content: space-between;">
+        <div class="tic-tac-toe-board" style="flex: 2;">
+
+            {% if moves %}
+            <h3 style="text-align: center;">Game Moves</h3>
+            <table>
+                {% for i in "012" %}
+                <tr>
+                    {% for j in "012" %}
+                    <td>
+                    {% for move in moves %}
+                    {% if move.row == i and move.col == j %}
+                    {{ move.value }}
+                    {% endif %}
+                    {% endfor %}
+                </td>
+                {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+            {% else %}
+            <h3 style="text-align: center;">No moves yet</h3>
+            {% endif %}
+        </div>
+
+        <div class="info-columns" style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="teams-column" style="text-align: center; margin-bottom: 75px;">
+                <h5> {{ player_team.name }} </h5>
+                versus
+                {% if opponent.name %}
+                <h5> {{ opponent.name }} </h5>
+                {% else %}
+                <h5> Waiting for opponent... </h5>
+                {% endif %}
+
+            </div>
+
+            <div class="status-column" style="text-align: center; margin-bottom: 75px;">
+                <h5>{{  game.status }}</h5>
+            </div>
+
+            <div class="last-move-column">
+                <!-- Add the last move here -->
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

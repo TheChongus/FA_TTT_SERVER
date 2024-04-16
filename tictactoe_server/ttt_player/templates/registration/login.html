@@ -1,0 +1,21 @@
+<!--inherits the template from /templates/base.html-->
+{% extends 'base.html' %}
+
+{% block title %}
+Tic Tac Toe - Player Home
+{% endblock %}
+
+
+
+{% block content %}
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+<!-- registration/login.html -->
+
+<form method="post" style="text-align: center;"">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+</form>
+
+</div>
+{% endblock %}

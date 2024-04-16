@@ -1,0 +1,16 @@
+<!--inherits the template from /templates/base.html-->
+{% extends 'base.html' %}
+
+{% block title %}
+Tic Tac Toe - Player Home
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="container" style="text-align:center;">
+    <h1>Welcome to Tic Tac Toe</h1>
+    <p>Click on the button below to start a new game</p>
+    <a href="{% url 'profile' %}" class="btn btn-primary">New Game</a>
+    </div>
+{% endblock %}

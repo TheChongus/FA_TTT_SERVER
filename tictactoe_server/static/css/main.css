@@ -1,0 +1,22 @@
+
+
+.container {
+    margin-bottom: 100px;
+}
+
+.container#page_header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh; /* Adjust as needed */
+    text-align: center;
+}
+
+.container#profile_main{
+    display: flex;
+    justify-content: space-between;
+}
+
+.red-text {
+    color: red;
+}
