@@ -29,8 +29,8 @@ Tic Tac Toe - Player Profile
                                     {% for game in team.games.all %}
                                         <li>
                                             
-                                            <a href="{% url 'game_detail' game_id=game.game_id team_id=team.id %}">{{ game.game_id}} - {{ game.status }}</a>
-                                        
+                                            <a href="{% url 'game_detail' game_id=game.game_id team_id=team.id %}">{{ game.game_id}} - {{ game.status }} current turn: {{ game.turn }}</a>
+                                            {{ team.auth_key }}
                                         </li>
                                     {% empty %}
                                         <li>No games</li>

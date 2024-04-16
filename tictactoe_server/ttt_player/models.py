@@ -52,7 +52,8 @@ class Move(models.Model):
     COLUMN_CHOICES = [(i, i) for i in range(1, 4)]
 
     game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name='moves')
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, null=True, blank=True)
+    opponent = models.ForeignKey(Opponent, on_delete=models.CASCADE, null=True, blank=True)
     row = models.CharField(max_length=1, choices=ROW_CHOICES)
     column = models.CharField(max_length=1, choices=COLUMN_CHOICES)
     value = models.CharField(max_length=1, null=True, blank=True)
